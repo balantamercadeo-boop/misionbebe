@@ -2,217 +2,268 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Misión Bebé 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baby Shower Invitación</title>
+
   <style>
+    :root {
+      --pink-light: #fde8ef;
+      --pink: #ffb8c9;
+      --pink-strong: #f78da7;
+      --brown: #4b3b40;
+      --white: #ffffff;
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: 'Poppins', sans-serif; 
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #fdf6e3;
-      margin: 0;
-      padding: 0;
+      background: linear-gradient(135deg, #fff5f9, #ffe3ed, #ffd0e1);
+      color: var(--brown);
+      animation: fadeInBody 1.4s ease-in-out;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ANIMACIONES */
+    .fade-in { animation: fadeIn 1.3s ease forwards; opacity: 0; }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    .float { animation: float 4s ease-in-out infinite; }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .slide-up { opacity: 0; animation: slideUp 1.2s ease forwards; }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+    /* HERO */
+    .hero {
+      padding: 70px 20px;
       text-align: center;
+      background: linear-gradient(180deg, #ffeef5, #ffd9e6);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .hero img {
+      width: 290px;
+      border-radius: 30px;
+      margin-bottom: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      animation: float 4s ease-in-out infinite;
+    }
+    .hero h1 {
+      margin-top: 25px;
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .hero p {
+      margin-top: 10px;
+      font-size: 1.3rem;
     }
 
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 2rem;
+    /* SECTION */
+    section { padding: 60px 25px; }
+    .title-section {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 600;
+      color: #d86594;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
 
-    h1 {
-      color: #3b3b3b;
-      font-size: 2.5rem;
+    /* CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
     }
 
-    button {
-      background-color: #ff69b4;
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 1rem;
+    .card {
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+      text-align: center;
       transition: 0.3s;
     }
-
-    button:hover {
-      background-color: #ff85c1;
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.12);
     }
+    .card img { width: 120px; }
+    .card h3 { margin-top: 20px; font-size: 1.4rem; font-weight: 600; }
+    .card p { font-size: 1rem; margin-top: 10px; opacity: 0.85; }
 
-    .hidden {
-      display: none;
+    /* TIMELINE */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 850px;
+      margin: 0 auto;
     }
-
-    input {
-      padding: 0.5rem;
-      font-size: 1rem;
-      margin-top: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+    .step {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(8px);
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: 0.3s;
     }
+    .step:hover { transform: translateY(-5px); }
+    .step h4 { font-size: 1.4rem; margin-bottom: 8px; }
 
-    .bombas {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
+    /* CONFIRM */
+    .confirm { text-align: center; margin-top: 40px; }
 
-    /* Estilo de las bombas (simulan dibujo de bomba) */
-    .bomba {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: white;
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--pink-strong);
+      color: var(--white);
+      border: none;
+      border-radius: 30px;
       font-size: 1.2rem;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
+      margin: 10px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(247,141,167,0.4);
+      transition: 0.3s;
     }
+    .btn:hover { transform: scale(1.08); background: #ff6fa7; }
 
-    .bomba::before {
-      content: "";
-      position: absolute;
-      top: -20px;
-      left: 35px;
-      width: 20px;
-      height: 25px;
-      background-color: #333;
-      border-radius: 5px;
-      transform: rotate(20deg);
+    /* COUNTDOWN */
+    .cd-box {
+      background: white;
+      padding: 18px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      min-width: 90px;
+      transition: 0.3s;
     }
-
-    .bomba:hover {
-      transform: scale(1.1);
-    }
-
-    /* Colores de bombas */
-    .rosa { background-color: #ff8fc7; }
-    .azul { background-color: #66b2ff; }
-
-    .explosion {
+    .cd-box:hover { transform: translateY(-4px); }
+    .cd-box span {
       font-size: 2rem;
-      margin-top: 2rem;
-      animation: aparecer 1s ease-in-out;
+      font-weight: 700;
+      color: var(--brown);
+      display: block;
     }
+    .cd-box small { font-size: .9rem; opacity: .8; }
 
-    @keyframes aparecer {
-      from { opacity: 0; transform: scale(0.5); }
-      to { opacity: 1; transform: scale(1); }
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+
+      /* <<<< AQUÍ EL CAMBIO QUE PEDISTE >>>> */
+      .mensaje-flex {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .timeline { grid-template-columns: 1fr; }
+      .hero img { width: 230px; }
+      a { text-decoration: none; }
     }
   </style>
 </head>
+
 <body>
 
-  <div class="container">
-    <div id="pantalla-inicial">
-      <h1>🎉 Misión Bebé 🎉</h1>
-      <p>¿Puedes descubrir cuál bomba esconde el gran secreto?</p>
-      <button onclick="mostrarPista(0)">Comenzar</button>
-    </div>
+  <!-- HERO -->
+  <div class="hero fade-in">
+    <img src="3.png"/>
+    <h1>Baby Shower de Oriana</h1>
+    <p>21 de Diciembre – 4:00 PM – Mariano Ramos</p>
 
-    <div id="pistas" class="hidden">
-      <div id="pista-contenido"></div>
-    </div>
+    <h3 style="margin-bottom:14px; font-size:2.2rem; font-weight:700;">Ya solo faltan</h3>
 
-    <div id="bombas" class="hidden">
-      <h2>🕵️‍♀️ Elige el color que creas correcto</h2>
-      <p>¿Será niño o niña? 💖💙</p>
-
-      <div class="bombas">
-        <div class="bomba rosa" onclick="verificarGenero('NIÑA')">1</div>
-        <div class="bomba azul" onclick="verificarGenero('NIÑO')">2</div>
-        <div class="bomba rosa" onclick="verificarGenero('NIÑA')">3</div>
-        <div class="bomba azul" onclick="verificarGenero('NIÑO')">4</div>
-        <div class="bomba rosa" onclick="verificarGenero('NIÑA')">5</div>
-      </div>
-
-      <div id="resultado" class="explosion hidden"></div>
+    <div id="countdown-boxes" style="margin-top:10px; display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
+      <div class="cd-box"><span id="d">--</span><small>Días</small></div>
+      <div class="cd-box"><span id="h">--</span><small>Horas</small></div>
+      <div class="cd-box"><span id="m">--</span><small>Minutos</small></div>
+      <div class="cd-box"><span id="s">--</span><small>Segundos</small></div>
     </div>
   </div>
 
+  <!-- MENSAJE ESPECIAL -->
+  <section style="padding:35px 20px;">
+    <h2 class="title-section slide-up">Un Mensaje Especial</h2>
+
+    <div class="mensaje-flex" 
+         style="max-width:900px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:35px;">
+
+      <div class="card fade-in" style="flex:1;">
+        <p style="font-size:1.25rem; opacity:.9; line-height:1.6;">
+          Estamos felices de compartir este momento tan importante contigo.<br><br>
+          Tu presencia hará que este día sea aún más especial y lleno de amor.<br><br>
+          Gracias por acompañarnos en esta nueva etapa que celebramos con tanta ilusión.
+        </p>
+      </div>
+
+      <div style="flex:1; text-align:center;">
+        <img src="2.png" 
+             class="float"
+             style="width:100%; max-width:220px; border-radius:18px; box-shadow:0 8px 20px rgba(0,0,0,0.12);" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ITINERARIO -->
+  <section class="itinerary-box slide-up" 
+           style="background:#ffffff; padding:30px 20px; border-radius:25px; box-shadow:0 4px 12px rgba(0,0,0,0.1); max-width:900px; margin:40px auto;">
+    <h2 class="title-section">Itinerario del Día</h2>
+    <div class="timeline">
+      <div class="step"><h4>🍼 Llegada & Bienvenida</h4><p>Recibimiento con fotos y música suave.</p></div>
+      <div class="step"><h4>🎁 Juegos y Actividades</h4><p>Momentos divertidos para compartir.</p></div>
+      <div class="step"><h4>🍰 Refrigerio</h4><p>Dulces y snacks deliciosos.</p></div>
+      <div class="step"><h4>📸 Sesión de Fotos</h4><p>Fotos temáticas con decoración.</p></div>
+    </div>
+  </section>
+
+  <!-- CONFIRMACIÓN -->
+  <section style="background: var(--white);">
+    <h2 class="title-section slide-up">Confirmar Asistencia</h2>
+    <div class="confirm fade-in">
+      <a href="https://wa.link/d0ovcc" class="btn" target="_blank">Confirmar Asistencia</a>
+      <a href="https://maps.app.goo.gl/DzEK6st5pXYtYJby9" class="btn" target="_blank">Ver Ubicación del Evento</a>
+    </div>
+  </section>
+
   <script>
-    const pistas = [
-      {
-        pregunta: "🔍 Pista 1: No me puedes ver, pero sí escuchar. A veces sueno fuerte, a veces suave. Cuando estoy dentro de mamá, me escuchan con una máquina. ¿Qué soy?",
-        tipo: "",
-        respuesta: "LATIDO"
-      },
-      {
-        pregunta: "🔍 Pista 2: Estoy en casi todos los antojos de embarazada. A veces soy dulce, a veces salado. Me puedes tomar, comer o congelar. ¡Soy la perdición de muchas mamás!",
-        tipo: "💡 Una pista: empiezo por C y termino en E.",
-        respuesta: "CHOCOLATE"
-      },
-      {
-        pregunta: "🔍 Pista 3: Todos me esperan con emoción. A veces llego antes, a veces después. Las contracciones me anuncian. Cuando llego, cambia la vida para siempre.",
-        tipo: "",
-        respuesta: "BEBE"
-      },
-      {
-        pregunta: "🔍 Pista 4: Soy cómodo, calentito y silencioso. Mamá me lleva a todos lados sin que yo camine. Me muevo con ella y me alimento sin pedir. ¿Dónde estoy?",
-        tipo: "",
-        respuesta: "VIENTRE"
+    const eventDate = new Date('2025-12-21T16:00:00').getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance <= 0){
+        d.innerHTML = h.innerHTML = m.innerHTML = s.innerHTML = 0;
+        return;
       }
-    ];
 
-    let pistaActual = 0;
-
-    function mostrarPista(index) {
-      document.getElementById("pantalla-inicial").classList.add("hidden");
-      document.getElementById("pistas").classList.remove("hidden");
-
-      const contenido = document.getElementById("pista-contenido");
-      const pista = pistas[index];
-
-      contenido.innerHTML = `
-        <h2>Pista ${index + 1}</h2>
-        <p>${pista.pregunta}</p>
-        ${pista.tipo ? `<small>${pista.tipo}</small>` : ""}
-        <br>
-        <input type="text" id="respuesta" placeholder="Escribe tu respuesta aquí" />
-        <br>
-        <button onclick="validarRespuesta()">Enviar</button>
-      `;
-    }
-
-    function validarRespuesta() {
-      const input = document.getElementById("respuesta").value.trim().toUpperCase();
-      const respuestaCorrecta = pistas[pistaActual].respuesta.toUpperCase();
-
-      if (input === respuestaCorrecta) {
-        pistaActual++;
-        if (pistaActual < pistas.length) {
-          mostrarPista(pistaActual);
-        } else {
-          mostrarBombas();
-        }
-      } else {
-        alert("Respuesta incorrecta. Intenta de nuevo.");
-      }
-    }
-
-    function mostrarBombas() {
-      document.getElementById("pistas").classList.add("hidden");
-      document.getElementById("bombas").classList.remove("hidden");
-    }
-
-    function verificarGenero(genero) {
-      const resultado = document.getElementById("resultado");
-      resultado.classList.remove("hidden");
-
-      if (genero === "NIÑA") {
-        resultado.innerHTML = "🎀 ¡Haz acertado! Es una niña 💖";
-      } else {
-        resultado.innerHTML = "💥 ¡Oops! No acertaste, es una NIÑA 💖";
-      }
-    }
+      d.innerHTML = Math.floor(distance / (1000*60*60*24));
+      h.innerHTML = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+      m.innerHTML = Math.floor((distance % (1000*60*60)) / (1000*60));
+      s.innerHTML = Math.floor((distance % (1000*60)) / 1000);
+    },1000);
   </script>
+
 </body>
 </html>
